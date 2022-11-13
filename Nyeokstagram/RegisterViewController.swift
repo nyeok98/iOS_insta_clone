@@ -4,12 +4,10 @@
 //
 //  Created by NYEOK on 2022/11/12.
 //
-
 import UIKit
 
 class RegisterViewController: UIViewController {
     // MARK: - Properties
-
     // 유효성 검사를 위한 프로퍼티
     var isValidEmail = false {
         didSet { // 프로퍼티 옵저버
@@ -54,7 +52,6 @@ class RegisterViewController: UIViewController {
     }
     
     // MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTextField()
@@ -66,7 +63,6 @@ class RegisterViewController: UIViewController {
     }
     
     // MARK: - Actions
-
     @objc
     func textFieldEditingChanged(_ sender: UITextField) {
         let text = sender.text ?? ""
@@ -91,7 +87,6 @@ class RegisterViewController: UIViewController {
     }
     
     // MARK: - Helpers
-
     private func setupTextField() {
         textFields.forEach { tf in
             tf.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
