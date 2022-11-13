@@ -11,8 +11,11 @@ class LoginViewController: UIViewController {
     var email: String?
     var password: String?
     
+    @IBOutlet var registerBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setupAttribute()
     }
     
     @IBAction func emailTextFieldChanged(_ sender: UITextField) {
@@ -38,5 +41,22 @@ class LoginViewController: UIViewController {
         // 3. 화면전환 메소드를 이용해서 화면을 전환
 //        self.present(registerViewController, animated: true)
         self.navigationController?.pushViewController(registerViewController, animated: true)
+    }
+    
+    private func setupAttribute() {
+        // registerBtn
+        
+        let text1 = "계정이 없으신가요?"
+        let text2 = "가입하기"
+        
+        let font1 = UIFont.systemFont(ofSize: 13)
+        let font2 = UIFont.boldSystemFont(ofSize: 13)
+        
+        let color1 = UIColor.darkGray
+        let color2 = UIColor(named: "facebookColor")
+        
+        let attributes = generateButtonAttribute(self.registerBtn, texts: text1, text2, fonts: font1, font2, colors: color1, color2 ?? UIColor.blue)
+        
+        self.registerBtn.setAttributedTitle(attributes, for: .normal)
     }
 }
