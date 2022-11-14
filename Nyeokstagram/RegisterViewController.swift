@@ -8,6 +8,14 @@ import UIKit
 
 class RegisterViewController: UIViewController {
     // MARK: - Properties
+
+    var email: String = ""
+    var name: String = ""
+    var username: String = ""
+    var password: String = ""
+    
+    var userInfo: ((UserInfo) -> Void)?
+    
     // 유효성 검사를 위한 프로퍼티
     var isValidEmail = false {
         didSet { // 프로퍼티 옵저버
@@ -52,6 +60,7 @@ class RegisterViewController: UIViewController {
     }
     
     // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTextField()
@@ -63,6 +72,7 @@ class RegisterViewController: UIViewController {
     }
     
     // MARK: - Actions
+
     @objc
     func textFieldEditingChanged(_ sender: UITextField) {
         let text = sender.text ?? ""
@@ -70,12 +80,16 @@ class RegisterViewController: UIViewController {
         switch sender {
         case emailTextField:
             isValidEmail = text.isValidEmail()
+            email = text
         case nameTextField:
             isValidName = text.count > 2
+            name = text
         case usernameTextField:
             isValidUsername = text.count > 2
+            username = text
         case passwordTextField:
             isValidPassword = text.isValidPassword()
+            password = text
         default:
             fatalError("Missing TextFields...")
         }
@@ -86,7 +100,16 @@ class RegisterViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func resgisterBtnDidTap(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+        
+        let userInfo = UserInfo(email: email, name: name, username: username, password: password)
+        
+        self.userInfo?(userInfo)
+    }
+    
     // MARK: - Helpers
+
     private func setupTextField() {
         textFields.forEach { tf in
             tf.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
