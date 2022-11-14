@@ -35,14 +35,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginBtnPushed(_ sender: UIButton) {
         // 회원가입 정보 전달받고, 그것과 TextField 데이터가 일치하면, 로그인 되어야함.
-        let vc = storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as! UITabBarController
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
-        
-//        guard let userInfo = self.userInfo else { return }
-//        if userInfo.email == self.email, userInfo.password == self.password {
-//
-//        } else {}
+        guard let userInfo = self.userInfo else { return }
+        if userInfo.email == self.email, userInfo.password == self.password {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as! UITabBarController
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        } else {}
     }
     
     @IBAction func registerBtnPushed(_ sender: UIButton) {
