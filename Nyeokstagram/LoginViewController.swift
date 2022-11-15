@@ -5,6 +5,7 @@
 //  Created by NYEOK on 2022/11/12.
 //
 import UIKit
+import Alamofire
 
 class LoginViewController: UIViewController {
     var email: String?
